@@ -43,23 +43,35 @@
   </form>
 
   <script>
-    // Handle form submission
+    // Handle form submission with API call
     document.getElementById('taskForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const taskContent = document.getElementById('task').value.trim();
-
+  
       if (!taskContent) {
         alert('Please enter a task description.');
         return;
       }
-
-      // For now, we simulate task submission.
-      // Later, this will make an API call to our backend.
-      alert("Task submitted: " + taskContent);
-
-      // Optionally, you could clear the form after submission:
-      document.getElementById('task').value = "";
+  
+      try {
+        const response = await fetch('/api/tasks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ task: taskContent })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert("Task submitted successfully: " + JSON.stringify(data.task));
+        } else {
+          alert("Error: " + data.error);
+        }
+        // Clear the form after submission
+        document.getElementById('task').value = "";
+      } catch (err) {
+        console.error('Error submitting task:', err);
+        alert('An error occurred while submitting the task.');
+      }
     });
-  </script>
+  </script>  
 </body>
 </html>
