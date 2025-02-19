@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cognify Network MVP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Cognify Network MVP</h1>
+  <p>This demo interface allows you to post tasks for cognitive contributions.</p>
+
+  <form id="taskForm">
+    <label for="task">Enter Task Details:</label><br>
+    <textarea id="task" name="task" rows="4" placeholder="Describe the task here..."></textarea><br>
+    <button type="submit">Submit Task</button>
+  </form>
+
+  <script>
+    // Handle form submission
+    document.getElementById('taskForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const taskContent = document.getElementById('task').value.trim();
+
+      if (!taskContent) {
+        alert('Please enter a task description.');
+        return;
+      }
+
+      // For now, we simulate task submission.
+      // Later, this will make an API call to our backend.
+      alert("Task submitted: " + taskContent);
+
+      // Optionally, you could clear the form after submission:
+      document.getElementById('task').value = "";
+    });
+  </script>
+</body>
+</html>

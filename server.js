@@ -3,8 +3,10 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
+
 
 // A simple test route
 app.get('/', (req, res) => {
